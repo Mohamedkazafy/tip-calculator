@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Tip calculator app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+    *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Space Mono', monospace; 
+}
+body{
+    background-color:  hsl(185, 41%, 84%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+.card{
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+}
+.card *{
+    margin: 1rem;
+}
+input{
+    width: 100%;
+    height: 30px;
+    text-align: right;
+    font-size: 32px;
+    overflow: hidden;
+}
+.People{
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="13" height="16"><path fill="%239EBBBD" d="M9.573 7.729c.406 0 .784.07 1.126.209.342.14.639.33.881.569.232.227.438.503.614.82a5.1 5.1 0 01.407.949c.097.312.178.654.242 1.016.062.359.105.699.126 1.011.02.307.031.624.031.945 0 .836-.259 1.512-.768 2.01-.504.492-1.17.742-1.98.742H2.748c-.81 0-1.477-.25-1.98-.742C.259 14.76 0 14.084 0 13.248c0-.322.01-.64.032-.945.02-.312.063-.652.126-1.01.063-.363.144-.705.242-1.017.1-.323.238-.643.407-.948.176-.318.382-.594.613-.821.243-.238.54-.43.882-.57.342-.138.72-.208 1.125-.208.16 0 .313.067.61.265.183.123.397.264.636.421.204.134.48.259.822.372.333.11.671.167 1.005.167a3.19 3.19 0 001.006-.167c.341-.113.618-.238.822-.372l.636-.42c.296-.2.45-.266.61-.266zM6.598 0C7.63 0 8.522.38 9.252 1.129s1.1 1.666 1.1 2.724c0 1.06-.37 1.976-1.1 2.725-.73.75-1.623 1.13-2.654 1.13-1.03 0-1.924-.38-2.653-1.13-.73-.749-1.1-1.666-1.1-2.725 0-1.058.37-1.975 1.1-2.724C4.675.379 5.567 0 6.598 0z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: 80% left;
+    outline: none;
+    display: inline;
+    border: none;
+    background-color:  hsl(189, 41%, 97%);
+}
+label{
+    opacity: 0.5;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+.container{
+    width: 800px;
+    background-color: hsl(186, 100%, 14%);
+    border-radius: 15px;
+}
+.container h1{
+    text-align: right;
+    color: hsl(186, 51%, 41%);
+    font-size: 50px;
+}
+.container p{
+    color: #fff;
+}
+.selectTip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 10px;
+}
+  
+.selectTip button,
+.selectTip input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    background-color: #00494d;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#custom {
+    flex: 1 0 100%;
+    height: 58%;
+}
+.selectTip button:hover {
+    background-color: #006569;
+}
+form{
+    margin: 0.5rem;
+}
+form button{
+    background-color: #00494d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    width: 100%;
+    position: relative;
+    right: 14px;
+}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="billsection">
+  <label>Bill</label>
+  <input type="text" id="bill" class="bill">
+  <label>Select Tip %</label> 
+  <div class="selectTip">
+    <button class="precent" id="five">5%</button>
+    <button class="precent" id="ten">10%</button>
+    <button class="precent" id="fiften">15%</button>
+    <button class="precent" id="quarter">25%</button>
+    <button class="precent" id="half">50%</button>
+    <input type="number" id="custom" placeholder="Custom">
+  </div>
+ <label>Number of People</label> 
+ <p id="text"></p>
+  <input type="number" id="numberOfPeople" class="People">
+</div>
+  <div class="container">
+    <form action="">
+      <p>Tip Amount </p>
+      <p>/ person</p>
+      <h1 class="result" id="tipAmount">0.00</h1>
+      <p>Total</p> 
+      <p>/ person</p>
+      <h1 class="result" id="total">0.00</h1>
+      <button class="reset" type="reset">Reset</button>
+    </form>
+  </div>
+ </div>
+  
+  <!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>. -->
+  </div>
+  <script>
+    let bill = document.getElementById("bill");
+let fiveBtn = document.getElementById("five");
+let tenBtn = document.getElementById("ten");
+let fifteenBtn = document.getElementById("fiften");
+let quarterBtn = document.getElementById("quarter");
+let fiftyBtn = document.getElementById("half");
+let custom = document.getElementById("custom");
+let peopleNum = document.getElementById("numberOfPeople");
+let error = document.getElementById("text");
+let tipAmount = document.getElementById("tipAmount");
+let total = document.getElementById("total");
+
+function updateTipAndTotal(percentage) {
+     if (parseFloat(peopleNum.value) <= 0) {
+        error.textContent = "Number of people can't be zero or less";
+        error.style.color = "red"
+        peopleNum.style.border = "1px solid red"
+        return; 
+    } else{
+        error.textContent = "";
+    }
+    tipAmount.textContent = ((percentage / 100) * bill.value / peopleNum.value).toFixed(2);
+    total.textContent = (parseFloat(bill.value) / parseFloat(peopleNum.value) + parseFloat(tipAmount.textContent)).toFixed(2);
+}
+
+fiveBtn.onclick = () => {
+    updateTipAndTotal(5);
+}
+
+tenBtn.onclick = () => {
+    updateTipAndTotal(10);
+}
+
+fifteenBtn.onclick = () => {
+    updateTipAndTotal(15);
+}
+
+quarterBtn.onclick = () => {
+    updateTipAndTotal(25);
+}
+
+fiftyBtn.onclick = () => {
+    updateTipAndTotal(50);
+}
+
+  </script>
+</body>
+</html>
